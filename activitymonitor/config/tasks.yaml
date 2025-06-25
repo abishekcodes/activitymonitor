@@ -1,0 +1,53 @@
+cpu_monitor:
+  description: >
+    Based on this user query {user_query}
+
+    Provide the CPU usage if requested by the user
+    Guidelines:
+    - If query mentions "CPU", "processor", "processing" → provide CPU usage
+    Do NOT provide information that wasn't requested.
+  expected_output: >
+    A String containing the CPU Percentage
+  agent: sysadmin_agent
+
+memory_monitor:
+  description: >
+    Based on this user query {user_query}
+
+    Provide the Memory Percentage if requested by the user
+    Guidelines:
+    - If query mentions "memory", "RAM" → provide memory usage
+    Do NOT provide information that wasn't requested.
+  expected_output:
+    A String containing the Memory Percentage
+  agent: sysadmin_agent
+
+
+battery_monitor:
+  description: >
+    Based on this user query {user_query}
+
+    Provide the Battery Percentage if requested by the user
+    Guidelines:
+    - If query mentions "battery", "power", "charge" → provide battery status
+    Do NOT provide information that wasn't requested.
+  expected_output:
+    A String containing the Battery Percentage
+  agent: sysadmin_agent
+
+
+
+running_process:
+  description: >
+    Based on this user query: {user_query}
+    
+    Determine if the user wants process information:
+    - If query mentions "processes", "tasks", "programs", "apps" → provide process list
+    - If query mentions "top X" → provide X number of processes
+    - If query mentions "all", "system stats" → provide top 10 processes
+    - If no process-related keywords, do NOT provide process information
+    
+    Extract the number of processes requested (default to 10 if not specified).
+  expected_output:
+    A String denoting the Running Processes
+  agent: sysadmin_agent
