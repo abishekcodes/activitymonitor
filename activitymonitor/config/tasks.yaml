@@ -2,24 +2,22 @@ cpu_monitor:
   description: >
     Based on this user query "{user_query}""
     Provide the CPU usage if requested by the user
-    Guidelines:
+    *Guidelines*:
     - If query mentions "CPU", "processor", "processing" → provide CPU usage
     - Do NOT run this task unless CPU is explicitly requested by the user.
   expected_output: >
     Convey the CPU percentage to the user and mentioned it is for all cores together, Your response should be in a conversational tone.
-  
   agent: sysadmin_agent
 
 memory_monitor:
   description: >
     Based on this user query "{user_query}"
     Provide the Memory Percentage if requested by the user
-    Guidelines:
+    *Guidelines*:
     - If query mentions "memory", "RAM" → provide memory usage
     - Do NOT run this task unless memory is explicilty requested by the user.
   expected_output:
     Convey the memory percentage to the user and mention it is only virtual memory, Your response should be in a conversational tone.
-
   agent: sysadmin_agent
 
 battery_monitor:
@@ -27,7 +25,7 @@ battery_monitor:
     Based on this user query "{user_query}"
 
     Provide the Battery Percentage if requested by the user
-    Guidelines:
+    *Guidelines*:
     - If query mentions "battery", "power", "charge" → provide battery status
     - Do NOT run this task unless battery is explicilty requested by the user.
   expected_output:
@@ -41,11 +39,15 @@ running_process:
     Determine if the user wants process information:
     - If query mentions "processes", "tasks", "programs", "apps" → provide process list
     - If query mentions "top X" → provide X number of processes
-    - If query mentions "all", "system stats" → provide top 10 processes
+    - If query mentions "all", "system stats" → provide top 3 processes
     - If no process-related keywords, do NOT provide process information and do not run this task.
     
     Extract the number of processes requested (default to 3 if not specified).
     DO NOT run this task unless process information is explicitly requested by the user.
   expected_output:
-    Greet the user, Acknowledge them and then give them the Process_index, Name of the Process and CPU Usage Percentage of The Process in a Table format.
+    Greet the user,
+    Acknowledge them
+    give them the Parent Process Name and Total CPU of the parent process 
+    and then the Process_index, Process ID, Name of the Process and CPU Usage Percentage 
+    of all the children in a Table format with tree like structure connecting the parent and the children.
   agent: sysadmin_agent
