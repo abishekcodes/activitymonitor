@@ -47,5 +47,5 @@ running_process:
     Extract the number of processes requested (default to 3 if not specified).
     DO NOT run this task unless process information is explicitly requested by the user.
   expected_output:
-    Greet the user, Acknowledge them and then give them the Process_index, Process ID, Name of the Process and CPU Usage Percentage of The Process in a Table format.
+    Greet the user, Acknowledge them and then give them the Process_index, Name of the Process and CPU Usage Percentage of The Process in a Table format.
   agent: sysadmin_agent
