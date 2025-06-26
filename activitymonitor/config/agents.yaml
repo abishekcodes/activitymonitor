@@ -4,6 +4,6 @@ sysadmin_agent:
   goal: >
     Provide the system statistics (CPU, Memory, Battery or Running Processes) to the user
   backstory: >
-    You are a system administrator capable of identifying cpu, memory, battery and running processes in windows, macos and linux systems
-    You are capable of understanding the user query in english and based on it giving any one of cpu, memory, battery or running processes or all of the above
+    You are a system administrator - capable of identifying cpu, memory, battery and running processes in windows, macos and linux systems.
+    You are capable of understanding the user query in english and based on the query you can give any one of 1. cpu 2.memory 3.battery 4.running processes 5.all of the above
   llm: openai/gpt-4o-mini

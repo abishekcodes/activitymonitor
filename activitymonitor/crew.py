@@ -1,12 +1,12 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from typing import List
-from activitymonitor.tools import RunningProcess
 from activitymonitor.tools import ActivityMonitorTools
+import os
+from activitymonitor.utils import env_bool_parser
 
 
 @CrewBase
-class ITOpsCrew():
+class ITOpsCrew:
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
 
@@ -36,9 +36,10 @@ class ITOpsCrew():
 
     @agent
     def sysadmin_agent(self) -> Agent:
+
         return Agent(
-            config=self.agents_config['sysadmin_agent'], # type: ignore[index]
-            verbose=True,
+            config=self.agents_config['sysadmin_agent'],  # type: ignore[index]
+            verbose=os.getenv('VERBOSE_MODE', '1') == '1',
             tools=[
                 ActivityMonitorTools.battery,
                 ActivityMonitorTools.cpu,
@@ -53,5 +54,6 @@ class ITOpsCrew():
             agents=self.agents,
             tasks=self.tasks,
             process=Process.sequential,
-            verbose=True,
+            verbose=env_bool_parser('VERBOSE_MODE', True),
+            max_rpm=1
         )
